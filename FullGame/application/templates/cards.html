@@ -1,0 +1,157 @@
+{% extends "layout.html" %}
+{% block head %}
+<style>
+    .cardlist {
+        padding-left: 50px;
+        padding-right: 30px;
+        margin-left:50px;
+        margin-right:30px;
+        text-align: center;
+    }
+    .cardlist img{
+        padding-left: -75px;
+        margin-left:-75px;
+    }
+</style>
+{% endblock %}
+{% block body %}
+    <p>Hello! player <font color="blue"><b>{{player}}</b></font></p>
+    Your Hand:
+    <hr>
+    {#% with cards = get_flashed_messages(category_filter=["cards"]) %#}
+    {% if cards %}
+        {% with options = get_flashed_messages(category_filter=["options"]) %}
+        {% if options %}
+        <form>
+            {% for op in options %}
+            {% if loop.first %}
+            <input type="radio", name="option", value="{{op}}" checked>{{op}}
+                {% if op == 'Claim' %}
+                <input type="radio", name = "claim_option", value = 'A' checked>A
+                <input type="radio", name = "claim_option", value = '2'>2
+                <input type="radio", name = "claim_option", value = '3'>3
+                <input type="radio", name = "claim_option", value = '4'>4
+                <input type="radio", name = "claim_option", value = '5'>5
+                <input type="radio", name = "claim_option", value = '6'>6
+                <input type="radio", name = "claim_option", value = '7'>7
+                <input type="radio", name = "claim_option", value = '8'>8
+                <input type="radio", name = "claim_option", value = '9'>9
+                <input type="radio", name = "claim_option", value = '10'>10
+                <input type="radio", name = "claim_option", value = 'J'>J
+                <input type="radio", name = "claim_option", value = 'Q'>Q
+                <input type="radio", name = "claim_option", value = 'K'>K
+                {% endif %}
+            {% else %}
+            <input type="radio", name="option", value="{{op}}">{{op}}
+            {% endif %}
+            {% endfor %}
+            <hr>
+        </form>
+        {% endif %}
+        {% endwith %}
+        <div class="cardlist", id = "cardlist">
+            {% for card in cards %}            
+            <img src = {{card[1]}}, alt = {{card}},
+                onclick="clickCard(this)", class = "a_card", 
+                id = {{card[0]}}, name = "a_card", style="z-index:{{loop.index}};position:relative;">
+            {% endfor %}
+        </div>
+        <button type="button", onclick = "submitChosen()">Submit!</button>
+        <button type="button", onclick = "clearAll()">Clear All</button>
+    {% else %}
+        <p>You Have No Cards HAHAHA!</p>
+    {% endif %}
+    {#% endwith %#}
+    <hr>
+    <script>
+        var all_cards = document.getElementsByName("a_card")
+        var all_options = document.getElementsByName("option")
+        var all_claim_options = document.getElementsByName("claim_option")
+        function clickCard(self)
+        {            
+            if(self.chosen)
+            {
+                
+                self.style.cssText += "top:0px;"
+                self.chosen = false
+            }
+            else
+            {
+                self.style.cssText += "top:-20px;"
+                self.chosen = true
+            }
+        }
+        function submitChosen()
+        {
+            var chosen_cards = ""
+            for(card in all_cards)
+            {
+                if (all_cards[card].chosen)
+                {
+                    chosen_cards += all_cards[card].id
+                }
+            }
+            var chosen_option
+            for(op in all_options)
+            {
+                if(all_options[op].checked)
+                {
+                    chosen_option = all_options[op].value
+                    break
+                }
+            }
+            var chosen_claim_option
+            if(chosen_option == 'Claim')
+            {
+                for(op in all_claim_options)
+                {
+                    if(all_claim_options[op].checked)
+                    {
+                        chosen_claim_option = all_claim_options[op].value
+                        break
+                    }
+                }
+            }
+            var form = document.createElement("form");
+            form.setAttribute("method", "post");
+            form.setAttribute("action", "");
+
+            var hiddenField1 = document.createElement("input");
+            hiddenField1.setAttribute("type", "hidden");
+            hiddenField1.setAttribute("name", "Option");
+            hiddenField1.setAttribute("value",chosen_option);
+            form.appendChild(hiddenField1);
+
+            var hiddenField2 = document.createElement("input");
+            hiddenField2.setAttribute("type", "hidden");
+            hiddenField2.setAttribute("name", "Cards");
+            hiddenField2.setAttribute("value",chosen_cards);
+            form.appendChild(hiddenField2);
+            
+            if(chosen_option == 'Claim')
+            {
+                var hiddenField3 = document.createElement("input");
+                hiddenField3.setAttribute("type", "hidden");
+                hiddenField3.setAttribute("name", "ClaimOption");
+                hiddenField3.setAttribute("value",chosen_claim_option);
+                form.appendChild(hiddenField3);
+            }
+            document.body.appendChild(form);
+            form.submit();
+        }
+        function clearAll()
+        {
+            for(card in all_cards)
+            {
+                all_cards[card].style.cssText = "top:0px;"
+                all_cards[card].chosen = false
+            }
+        }
+    </script>
+    {% if need_refresh %}
+    <script>
+        setTimeout(function(){window.location = window.location.pathname}, 3000)
+    </script>
+    {% endif %}
+{% endblock %}
+

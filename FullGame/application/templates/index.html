@@ -1,0 +1,93 @@
+{% extends "layout.html" %}
+{% block head %}  
+	<!link type="text/css">
+	<style>		
+		.table1_9 table {			
+			width:100% auto;
+			margin:0 auto;
+		}
+		.table1_9 th {
+			height: 30px;
+			width: 360px;
+			background-color:#1EA4FF;
+			color:#FFFFFF;
+		}
+		.table1_9,.table1_9 th,.table1_9 td {
+			font-size:0.95em;
+			text-align:center;
+			padding:1px;
+			border:1px solid #dddddd;
+			border-collapse:collapse;
+		}
+		.table1_9 tr:nth-child(odd){
+			background-color:#b4e0fe;
+		}
+		.table1_9 tr:nth-child(even){
+			background-color:#fdfdfd;
+		}
+		.rule h3{
+			font-weight:bold;
+			padding-bottom:0;
+			margin-bottom:0;
+		}
+		.rule p{
+			margin-top:0;
+			white-space:pre-line;
+			padding-left:2em;			
+		}
+		h2 {
+			text-align:center;
+		}
+	</style>       
+{% endblock %}
+{% block body %}		
+	<h2>Major Contributors </h2>	
+	<table class="table1_9" align="center">
+		<tr>
+			<th><h3>Zhang Xiaohan</h3></th><th><h3>zxh666@mail.ustc.edu.cn</h3></th>
+		</tr>
+		<tr>
+			<th><h3>Xie Xiaokang</h3></th><th><h3>xiexk@mail.ustc.edu.cn</h3></th>
+		</tr>
+	</table>	
+	<div class="rule">
+	<hr>
+	<h2>Trick Game Rules</h2>
+			<!--img alt="Rules" src="../static/image/TrickGameRules.png" width="500"/-->
+		<h3>扑克牌：</h3>
+			<p>两幅标准扑克牌108张。</p>
+		<h3>玩家：</h3>
+			<p>通常为4个。</p>
+		<h3>初始化：</h3>
+			<p>1）把108张扑克牌全部平均发给所有玩家。
+			2）第一位出牌的人一般是第一个被发牌的玩家，或者是拥有一张特定牌的玩家。
+			3）游戏出牌的顺序与玩家被发牌的先后一致（顺时针或逆时针）。
+			4）桌子中央是弃牌堆，在游戏开始时是清空的。</p>
+		<h3>游戏目标：</h3>
+			<p>最先打完全部手牌的玩家获胜。</p>
+		<h3>出牌规则：</h3>
+			<p>1）出牌的人需要打出1-8中间任意数量的牌，背面向上覆盖在桌上，并告诉全部玩家(宣称)所出牌的是什么牌。
+			2）格式是“几张几”，例如“3张Q”，“5张4”，只能宣称一种类型的牌，即不能说我出四张牌，1张2和3张5。
+			3）另一方面，出牌的玩家可以说谎，即宣称的牌和实际出的牌不一样。
+			4）例如，我宣称出了4张5，其实我出的是1,2,3,4四张牌。（注：大王小王可以当成任意牌来用）</p>
+		<h3>玩家策略：</h3>
+			<p>1）Pass，即不做任何操作，直接跳转到下一家；  
+			2）Follow，按照出牌规则跟随上家出牌；  
+			3）Question，质疑上家说谎（如果上家跳过就质疑上家的上家，以此类推），并把牌翻过来看，注意只看上家实际出的牌。
+			4）如果出牌人真的说谎，出牌人就要拿走他所出的牌以及弃牌堆中的全部扑克牌，并开始下一轮，由揭发者（拿到牌权）开始出牌。
+			5）如果出牌人没有说谎，整叠牌就要给予揭发者，并开始下一轮，由出牌人（拿到牌权）开始出牌。  
+			6）每一轮第一个出牌（拥有牌权）的玩家决定该轮要出的牌，且该轮只出这一种类型的牌，比如3（不区分花色）；</p>
+		<h3>回合结束的触发条件：</h3>
+			<p>1）无论Question成功与否，该回合总是结束；  
+			2）其他的玩家都过，则将这一叠牌移开不管（称为废牌，不再回收），开始下一轮游戏，由上一轮最后出牌的玩家首先出牌。</p>
+	</div>
+	<hr>		
+	<h2>Codes</h2>
+	<a href="https://github.com/ustcxiexk/Poker/tree/master/Code/Game" target="_blank">
+		<img alt="Codes" src="../static/image/codes.png" width="500/"/>
+	</a>
+	<br />
+	<a href ="/login">
+		<img alt="Codes" src="../static/image/playnow.jpg" width="100/" align="middle"/>
+	</a>
+{% endblock %}

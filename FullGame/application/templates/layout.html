@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+    <head>        
+        <!-- jQuery Library 
+        <meta charset="UTF-8">        
+        <script src="//lib.sinaapp.com/js/jquery/1.12.4/jquery-1.12.4.min.js"></script>  
+        <!-- Common Head Parts -->
+        <title>Trick Game</title>
+        <!-- Head Block Entrance -->
+        {% block head %}{% endblock %}
+        <style>
+        .layout_error li{
+            color:red
+        }
+        .layout_log li{
+            color: grey
+        }
+        .layout_log li:last-child{
+            color: black
+        }
+        </style>
+    </head>
+    <body>
+        <!-- Common Head Parts -->
+        <h1 align="center">Trick Game </h1>
+        <hr>
+        <!-- Error Messages -->
+        {% with messages = get_flashed_messages(category_filter=["error"]) %}
+        {% if messages %}
+            <ul class=layout_error>
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+            </ul>
+            <hr>
+        {% endif %}
+        {% endwith %}
+        <!-- Log Messages -->
+        {% with messages = get_flashed_messages(category_filter=["log"]) %}
+        {% if messages %}
+            <ul class=layout_log>
+            {% for message in messages %}           
+                <li>{{ message }}</li>
+            {% endfor %}
+            </ul>
+            <hr>
+        {% endif %}
+        {% endwith %}
+        <!-- Body Block Entrance -->
+        {% block body %}{% endblock %}
+    </body>
+</html>
