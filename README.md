@@ -4,7 +4,7 @@
 前言：
 这个纸牌游戏是我小时候玩的，后来教过好多人玩过。上周末教会宿舍人一起玩，觉得太有意思了，就决定把这个游戏写出来，取名为Trick Game。我们最初的打算是按照GUI + Socket实现玩家交互和网络方面的事情，后来发现这样的话，每个想要玩这个游戏的人，必须要在终端下载一个小程序，还要有编译环境，这样估计大家都会望而却步的，所以我们就换了网页登录的方式，用python + flask的方法实现与玩家交互，只要登录网页就可以进行游戏。
 
-![Aaron Swartz]（）https://github.com/ustcxiexk/TrickGame/raw/master/FullGame/application/static/image/TrickGameRules.png?raw=true）
+![Aaron Swartz]（）https://github.com/ustcxiexk/TrickGame/raw/master/FullGame/application/static/image/TrickGameRules.png）
 游戏规则：
 
 扑克牌：
