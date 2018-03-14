@@ -6,9 +6,10 @@
 
 ![Aaron Swartz](https://github.com/ustcxiexk/TrickGame/raw/master/FullGame/application/static/image/gamerunning.png)
 
-游戏规则：
+### 游戏规则：
 
-扑克牌：
+****扑克牌：
+
 两幅标准扑克牌108张。
 
 玩家：
